@@ -13,7 +13,6 @@ def print_menu(title, list_options):
     """
 
 
-
 def print_message(message):
     """Prints a single message to the terminal.
 
