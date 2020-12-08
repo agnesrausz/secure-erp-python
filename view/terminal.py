@@ -87,4 +87,4 @@ def print_error_message(message):
     Args:
         message: str - the error message
     """
-    pass
+    print("Error!\n" + message)
