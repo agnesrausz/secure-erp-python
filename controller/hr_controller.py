@@ -1,7 +1,7 @@
 from model.hr import hr
 from view import terminal as view
 
-
+asdasd
 def list_employees():
     view.print_error_message("Not implemented yet.")
 
