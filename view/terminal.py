@@ -64,7 +64,21 @@ def get_inputs(labels):
     Args:
         labels: list - the list of the labels to be displayed before each prompt
     """
-    pass
+    input_list = []
+    i = 0
+    print("Press q to quit")
+    while True:
+        try:
+            inp = input(labels[i] + ":")
+            if inp == "q":
+                input_list = []
+                break
+            else:
+                input_list.append(inp)
+                i += 1
+        except IndexError:
+            print("Thank you for the informations!")
+            break
 
 
 def print_error_message(message):
