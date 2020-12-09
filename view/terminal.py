@@ -11,6 +11,15 @@ def print_menu(title, list_options):
         title (str): the title of the menu (first row)
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
+    print(
+
+        title + ":\n"
+        + "(1) " + list_options[1] + "\n"
+        + "(2) " + list_options[2] + "\n"
+        + "(3) " + list_options[3] + "\n"
+        + "(0) " + list_options[0] + "\n"
+
+        )
 
 
 def print_message(message):
