@@ -12,3 +12,25 @@ from model import data_manager, util
 
 DATAFILE = "model/hr/hr.csv"
 HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
+
+employees = data_manager.read_table_from_file(DATAFILE, separator=';')
+
+#qwe = write_table_to_file(DATAFILE, table, separator=';')
+
+
+class Employee:
+    def __init__(self, id, name, birth_date, department, clearance_lvl):
+        self.id = id
+        self.name = name
+        self.birth_date = birth_date
+        self.department = department
+        self.clearance_lvl = clearance_lvl
+
+
+Employees = []
+
+for employee in range(len(employees)):
+    #for employee_data in range(len(employees[employee])):
+    #    datas = append
+    Employees.append(Employee(employees[employee][0], employees[employee][1], employees[employee][2], employees[employee][3], employees[employee][4]))
+    
