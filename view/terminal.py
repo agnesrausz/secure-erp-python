@@ -11,6 +11,10 @@ def print_menu(title, list_options):
         title (str): the title of the menu (first row)
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
+    # number 0 means the first element of the list, "Exit Program"
+    # number 1 means the second element of the list, "Store Manager"
+    # number 2 means the third element of the list, "Human resources manager"
+    # number 3 means the fourth element of the list, "Inventory manager"
     print(
 
         title + ":\n"
@@ -83,8 +87,8 @@ def get_inputs(labels):
                 break
             else:
                 input_list.append(inp)
-                i += 1
-        except IndexError:
+                i += 1  # this generates an index error, If that occurs, we know that we got all the input we needed
+        except IndexError:  # if the index error occurs, we break out from the endless input loop
             print("Thank you for the informations!")
             break
 
