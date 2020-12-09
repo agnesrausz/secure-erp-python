@@ -19,7 +19,7 @@ def print_message(message):
     Args:
         message: str - the message
     """
-    pass
+    print(message)
 
 
 def print_general_results(result, label):
