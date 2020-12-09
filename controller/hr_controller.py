@@ -29,6 +29,7 @@ def get_oldest_and_youngest():
             oldest_and_youngest.append(Employee.name)
         elif Employee.birth_date == max(birth_dates):
             oldest_and_youngest.append(Employee.name)
+    print(tuple(oldest_and_youngest))  # ??
     return tuple(oldest_and_youngest)
 
 

@@ -32,4 +32,9 @@ Employees = []
 for employee in range(len(employees)):
     # for employee_data in range(len(employees[employee])):
     #     datas = append
-    Employees.append(Employee(employees[employee][0], employees[employee][1], employees[employee][2], employees[employee][3], employees[employee][4]))
+    Employees.append(Employee(
+        employees[employee][0], 
+        employees[employee][1], 
+        employees[employee][2], 
+        employees[employee][3], 
+        employees[employee][4]))
