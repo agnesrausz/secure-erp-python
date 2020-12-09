@@ -3,8 +3,8 @@ from view import terminal as view
 
 
 def list_employees():
-    for employee in hr.Employees:
-        print(employee.name)
+    for Employee in hr.Employees:
+        print(Employee.name)
 
 
 def add_employee():
@@ -20,7 +20,16 @@ def delete_employee():
 
 
 def get_oldest_and_youngest():
-    view.print_error_message("Not implemented yet.")
+    birth_dates = []
+    oldest_and_youngest = []
+    for Employee in hr.Employees:
+        birth_dates.append(Employee.birth_date)
+    for Employee in hr.Employees:
+        if Employee.birth_date == min(birth_dates):
+            oldest_and_youngest.append(Employee.name)
+        elif Employee.birth_date == max(birth_dates):
+            oldest_and_youngest.append(Employee.name)
+    return tuple(oldest_and_youngest)
 
 
 def get_average_age():
