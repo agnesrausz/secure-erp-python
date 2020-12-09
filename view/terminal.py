@@ -57,7 +57,15 @@ def print_table(table):
     Args:
         table: list of lists - the table to print out
     """
-    pass
+    counter = 0
+    table = [["id", "product", "type"], ["0", "Bazooka", "portable"], ["1", "Sidewinder", "missile"]]
+    print("/---------------------------------------\ ")
+    for i in table:
+        print("|    " + i[0] + "\t" + "|    " + i[1] + "\t" + "|    " + i[2] + "\t" + "|")
+        counter += 1
+        if counter < 3:
+            print("|-------|---------------|---------------|")
+    print("\---------------------------------------/")
 
 
 def get_input(label):
