@@ -84,8 +84,8 @@ def get_inputs(labels):
             inp = input(labels[i] + ":")
             if inp == "q":
                 input_list = []
-                break
-            else:
+                break  # if the user presses q before every info were provided,
+            else:      # the program sets the list to an empty list, then breaks out from the endless input loop
                 input_list.append(inp)
                 i += 1  # this generates an index error, If that occurs, we know that we got all the input we needed
         except IndexError:  # if the index error occurs, we break out from the endless input loop
