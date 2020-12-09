@@ -15,7 +15,7 @@ HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
 
 employees = data_manager.read_table_from_file(DATAFILE, separator=';')
 
-#qwe = write_table_to_file(DATAFILE, table, separator=';')
+# qwe = write_table_to_file(DATAFILE, table, separator=';')
 
 
 class Employee:
@@ -30,7 +30,6 @@ class Employee:
 Employees = []
 
 for employee in range(len(employees)):
-    #for employee_data in range(len(employees[employee])):
-    #    datas = append
+    # for employee_data in range(len(employees[employee])):
+    #     datas = append
     Employees.append(Employee(employees[employee][0], employees[employee][1], employees[employee][2], employees[employee][3], employees[employee][4]))
-    

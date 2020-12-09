@@ -3,7 +3,8 @@ from view import terminal as view
 
 
 def list_employees():
-    view.print_error_message("Not implemented yet.")
+    for employee in hr.Employees:
+        print(employee.name)
 
 
 def add_employee():
