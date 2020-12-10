@@ -1,6 +1,6 @@
 from model.hr import hr
 from view import terminal as view
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 
 def list_employees():
@@ -38,17 +38,28 @@ def get_average_age():
     today = date.today()
     ages = []
     for Employee in hr.Employees:
-        birth_date = datetime.strptime(Employee.birth_date, '%Y-%M-%d')
+        birth_date = datetime.strptime(Employee.birth_date, '%Y-%m-%d')
         age = today.year - birth_date.year
         ages.append(age)
-    print(int(sum(ages)/len(ages)))
+    print(int(sum(ages)/len(ages)))  # ??
+    return (int(sum(ages)/len(ages)))
 
 
 def next_birthdays():
     today = date.today()
-
+    given_date = input("Add given date! YYYY-MM-DD or today: ")
+    if given_date == "today":
+        given_date = today
+    else:
+        given_date = datetime.strptime(given_date, '%Y-%m-%d')
+    two_weeks_later = given_date + timedelta(days=14)
+    next_birthdays_names = []
     for Employee in hr.Employees:
-        if Employee.birth_date == :
+        birth_date = datetime.strptime(Employee.birth_date, '%Y-%m-%d')
+        if (given_date.month, given_date.day) < (birth_date.month, birth_date.day) and (two_weeks_later.month, two_weeks_later.day) > (birth_date.month, birth_date.day):
+            next_birthdays_names.append(Employee.name)
+    print(next_birthdays_names)  # ??
+    return(next_birthdays_names)
 
 
 def count_employees_with_clearance():
