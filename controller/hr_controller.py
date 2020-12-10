@@ -47,7 +47,7 @@ def get_average_age():
 
 def next_birthdays():
     today = date.today()
-    given_date = input("Add given date! YYYY-MM-DD or today: ")
+    given_date = input("Add a date! YYYY-MM-DD or today: ")
     if given_date == "today":
         given_date = today
     else:
@@ -63,7 +63,13 @@ def next_birthdays():
 
 
 def count_employees_with_clearance():
-    view.print_error_message("Not implemented yet.")
+    clearance_level = int(input("Add clearence level: "))
+    clearance_names = []
+    for Employee in hr.Employees:
+        if int(Employee.clearance_lvl) <= clearance_level:
+            clearance_names.append(Employee.name)
+    print(clearance_names)  # ??
+    return clearance_names
 
 
 def count_employees_per_department():
