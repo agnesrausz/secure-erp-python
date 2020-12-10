@@ -3,50 +3,81 @@ from view import terminal as view
 from model import util
 
 def list_customers():
-    #view.print_error_message("Not implemented yet.")
+    print("The current list of the customers is: ")
     for customer in crm.customers:
-        print(customer.name)
+        print("- %s" %customer.name)
 
 def add_customer():
-    #view.print_error_message("Not implemented yet.")
     import re
-    name = input("Username: ")
+    new_customer = []
     valid_email = False
+
+    #creating ID
+    user_id = crm.create_id()
+    new_customer.append(user_id)
+
+    #getting new name
+    name = input("Username: ")
+    new_customer.append(name)
+
+    #checking if give e-mail is in the correct format ([something]@[something].[something])
     while valid_email != True:
         email = input("E-mail: ")
         
         if re.match("\A(?P<name>[\w\-_]+)@(?P<domain>[\w\-_]+).(?P<toplevel>[\w]+)\Z",email,re.IGNORECASE):
             valid_email = True
+            new_customer.append(email)
         else:
             print("Invalid e-mail adress!")
 
+    #getting subscribed status
     subsribed_status = input("Is %s subsribed? (y/n) "%name)
-
     if subsribed_status == "y":
-        subsribed = 1
+        subscribed = "1"
+        new_customer.append(subscribed)
     elif subsribed_status == "n":
-        subsribed = 0
-    print("%s's user ID is:"%name, util.generate_id(10))
+        subscribed = "0"
+        new_customer.append(subscribed)
+
+    #showing user ID
+    print("%s's user ID is:"%name, user_id)
+
+    #adding new customer to the existing list
+    crm.table.append(new_customer)
+    crm.modify_csv_data()
+    
 
 
 def update_customer():
-    #view.print_error_message("Not implemented yet.")
-    #ask_user_id = input("Please insert the user's ID you'd like to update: ")
-    #if ask_user_id in crm.crm_data_list:
-    #    new_name = input("New name: ")
-    #    name = new_name
-    #    new_email = input("New email: ")
-    #    email = new_email
-    #    subsribed_status = input("Is %s subsribed? (y/n) "%name)
-    #    new_subsribed = 0
-    #    if subsribed_status == "y":
-    #        new_subsribed = 1
-    #    elif subsribed_status == "n":
-    #        new_subsribed = 0
-    #    new_subsribed = subscribed
-    #else:
-    #    print("Invalid user ID.")
-    pass
+    import re
+    valid_email = False
+    invalid_user = True
+    
+    while invalid_user == True:
+        ask_user_id = input("Please insert the user's ID you'd like to update: ")
+        for crm_data_list_first_index in range(len(crm.crm_data_list)):
+            for crm_data_list_second_index in range(len(crm.crm_data_list)):
+                if crm.crm_data_list[crm_data_list_first_index][crm_data_list_second_index] == ask_user_id:
+                    invalid_user = False
+                    new_name = input("New name: ")
+                    name = new_name
+                    while valid_email != True:
+                        new_email = input("E-mail: ")
+                        if re.match("\A(?P<name>[\w\-_]+)@(?P<domain>[\w\-_]+).(?P<toplevel>[\w]+)\Z",new_email,re.IGNORECASE):
+                            valid_email = True
+                            email = new_email
+                        else:
+                            print("Invalid e-mail adress!")
+                    subsribed_status = input("Is %s subsribed? (y/n) "%name)
+                    if subsribed_status == "y":
+                        new_subsribed = 1
+                        subscribed = new_subsribed
+                    elif subsribed_status == "n":
+                        new_subsribed = 0
+                        subscribed = new_subsribed
+        if invalid_user == True:
+            print("Invalid user ID.")
+                
 
 
 def delete_customer():
@@ -54,10 +85,10 @@ def delete_customer():
 
 
 def get_subscribed_emails():
-    #view.print_error_message("Not implemented yet.")
+    print("E-mail adresses of the subsribed customers: ")
     for customer in crm.customers:
         if customer.subscribed == "1":
-            print(customer.email)
+            print("- %s" %customer.email)
 
 def run_operation(option):
     if option == 1:
