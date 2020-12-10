@@ -15,7 +15,10 @@ HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
 
 employees = data_manager.read_table_from_file(DATAFILE, separator=';')
 
-# qwe = write_table_to_file(DATAFILE, table, separator=';')
+def write(Employees):
+    # Employees convert to 2D list
+    table = 
+    write_table_to_file(DATAFILE, table, separator=';')
 
 
 class Employee:
@@ -41,3 +44,5 @@ for employee in range(len(employees)):
         employees[employee][2], 
         employees[employee][3], 
         employees[employee][4]))
+
+id = util.generate_id()

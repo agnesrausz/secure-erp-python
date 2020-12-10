@@ -9,8 +9,15 @@ def list_employees():
 
 
 def add_employee():
-    view.print_error_message("Not implemented yet.")
-
+    list_of_Employees = hr.Employees
+    id = hr.id
+    name = input()
+    birth_date = input()
+    department = input()
+    clearance_lvl = input()
+    new_Employee = hr.Employee(id, name, birth_date, department, clearance_lvl)
+    new_list_of_Employees = list_of_Employees.append(new_Employee)
+    hr.write(new_list_of_Employees)
 
 def update_employee():
     view.print_error_message("Not implemented yet.")
@@ -47,7 +54,7 @@ def get_average_age():
 
 def next_birthdays():
     today = date.today()
-    given_date = input("Add given date! YYYY-MM-DD or today: ")
+    given_date = input("Add a date! YYYY-MM-DD or today: ")
     if given_date == "today":
         given_date = today
     else:
@@ -63,7 +70,13 @@ def next_birthdays():
 
 
 def count_employees_with_clearance():
-    view.print_error_message("Not implemented yet.")
+    clearance_level = int(input("Add clearence level: "))
+    clearance_names = []
+    for Employee in hr.Employees:
+        if int(Employee.clearance_lvl) <= clearance_level:
+            clearance_names.append(Employee.name)
+    print(clearance_names)  # ??
+    return clearance_names
 
 
 def count_employees_per_department():

@@ -51,16 +51,21 @@ def print_table(table):
     Args:
         table: list of lists - the table to print out
     """
-    counter = 0  # we need the counter to count how many lines we have to print out
-    table = [["id", "product", "type"], ["0", "Bazooka", "portable"], ["1", "Sidewinder", "missile"]]
-    print("/---------------------------------------\ ")
+    length = 0
+    lists_in_list = 0
     for i in table:
-        print("|    " + i[0] + "\t" + "|    " + i[1] + "\t" + "|    " + i[2] + "\t" + "|")
-        counter += 1  # after each line we add 1 to the counter to track how many lines we need
-        if counter < 3:  # this makes sure our board looks nice if we need 2 lines between the lists in total
-            # this may change with the increase of the items we have in the matrix
-            print("|-------|---------------|---------------|")
-    print("\---------------------------------------/")
+        lists_in_list += 1
+        for j in i:
+            if length < len(j):
+                length = len(j)
+    print("/" + (length*len(table[0])+2)*"-" + "\\")
+    for i in table:
+        for j in i:
+            print("|" + j + ((length - len(j)) * " "), end="")
+        print("|", end="")
+        print()
+        print("|" + ((length)*"-" + "|")*len(table[0]))
+    print("\\" + (length*len(table[0])+2)*"-" + "/")
 
 
 def get_input(label):

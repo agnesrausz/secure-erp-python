@@ -13,6 +13,5 @@ def generate_id(number_of_small_letters=4,
         random.sample(string.digits, number_of_digits) +
         random.sample(allowed_special_chars, number_of_special_chars)
         )
-    user_id = ''.join(random.sample(id_caracter, len(id_caracter)))
-    return user_id
-
+    id_number = ''.join(random.sample(id_caracter, len(id_caracter)))
+    return id_number
