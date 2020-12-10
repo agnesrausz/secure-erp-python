@@ -1,35 +1,18 @@
-import random
 import string
+import random
 
 
-LETTERS = string.ascii_letters
-NUMBERS = string.digits  
-PUNCTUATION = "_+-!"
-
-
-def generate_id(length=10):
-    '''
-    Generates a random password having the specified length
-    :length -> length of password to be generated. Defaults to 8
-        if nothing is specified.
-    :returns string <class 'str'>
-    '''
-
-    printable = f'{LETTERS}{NUMBERS}{PUNCTUATION}'
-
-
-    printable = list(printable)
-    random.shuffle(printable)
-
-
-    user_id = random.choices(printable, k=length)
-    user_id = ''.join(user_id)
+def generate_id(number_of_small_letters=4,
+                number_of_capital_letters=2,
+                number_of_digits=2,
+                number_of_special_chars=2,
+                allowed_special_chars="_+-!"):
+    id_caracter = (
+        random.sample(string.ascii_lowercase, number_of_small_letters) +
+        random.sample(string.ascii_uppercase, number_of_capital_letters) +
+        random.sample(string.digits, number_of_digits) +
+        random.sample(allowed_special_chars, number_of_special_chars)
+        )
+    user_id = ''.join(random.sample(id_caracter, len(id_caracter)))
     return user_id
 
-#def generate_id(number_of_small_letters=4,
-#                number_of_capital_letters=2,
-#                number_of_digits=2,
-#                number_of_special_chars=2,
-#                allowed_special_chars=r"_+-!"):
-#
-    #return user_id

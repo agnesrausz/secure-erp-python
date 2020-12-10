@@ -1,5 +1,7 @@
-from controller import main_controller
+from controller import main_controller, crm_controller
 from view import terminal
+from model.crm import crm
 
 if __name__ == '__main__':
-    main_controller.menu()
+    #main_controller.menu()
+    crm_controller.list_customers()
