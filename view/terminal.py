@@ -11,19 +11,13 @@ def print_menu(title, list_options):
         title (str): the title of the menu (first row)
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
-    # number 0 means the first element of the list, "Exit Program"
-    # number 1 means the second element of the list, "Store Manager"
-    # number 2 means the third element of the list, "Human resources manager"
-    # number 3 means the fourth element of the list, "Inventory manager"
-    print(
-
-        title + ":\n"
-        + "(1) " + list_options[1] + "\n"
-        + "(2) " + list_options[2] + "\n"
-        + "(3) " + list_options[3] + "\n"
-        + "(0) " + list_options[0] + "\n"
-
-        )
+    print(title)
+    for (option_number, option_name) in enumerate(list_options[1:], start=1):
+        #  We use enumerate to get the indexes (option_number) and the name of the options from the list
+        #  We start enumerating from the 1. index (2nd element) so we can print out all of the options with their indexes
+        print("(" + str(option_number) + ")", option_name)
+    print("(0)" + list_options[0])
+    # Now we print out the exit option, we don't have to mess with it in the enumeration as it will always be the first element.  
 
 
 def print_message(message):
