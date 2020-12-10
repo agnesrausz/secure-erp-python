@@ -1,5 +1,6 @@
 from model.hr import hr
 from view import terminal as view
+from datetime import date, datetime
 
 
 def list_employees():
@@ -34,11 +35,20 @@ def get_oldest_and_youngest():
 
 
 def get_average_age():
-    view.print_error_message("Not implemented yet.")
+    today = date.today()
+    ages = []
+    for Employee in hr.Employees:
+        birth_date = datetime.strptime(Employee.birth_date, '%Y-%M-%d')
+        age = today.year - birth_date.year
+        ages.append(age)
+    print(int(sum(ages)/len(ages)))
 
 
 def next_birthdays():
-    view.print_error_message("Not implemented yet.")
+    today = date.today()
+
+    for Employee in hr.Employees:
+        if Employee.birth_date == :
 
 
 def count_employees_with_clearance():
