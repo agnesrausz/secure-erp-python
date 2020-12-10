@@ -30,8 +30,11 @@ class Employee:
 Employees = []
 
 for employee in range(len(employees)):
+    # commnet not tested
+    # datas = []
     # for employee_data in range(len(employees[employee])):
-    #     datas = append
+    #     datas.append(employees[employee][employee_data])
+    # Employees.append(Employee(datas)
     Employees.append(Employee(
         employees[employee][0], 
         employees[employee][1], 
