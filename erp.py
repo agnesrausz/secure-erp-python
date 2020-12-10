@@ -3,5 +3,4 @@ from view import terminal
 from model.crm import crm
 
 if __name__ == '__main__':
-    #main_controller.menu()
-    crm_controller.list_customers()
+    main_controller.menu()
