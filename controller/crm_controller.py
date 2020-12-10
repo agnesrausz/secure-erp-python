@@ -50,39 +50,51 @@ def add_customer():
 
 def update_customer():
     import re
-    valid_email = False
     invalid_user = True
-    
+    valid_email = False
+    length = len(crm.table)
     while invalid_user == True:
         ask_user_id = input("Please insert the user's ID you'd like to update: ")
-        for crm_data_list_first_index in range(len(crm.crm_data_list)):
-            for crm_data_list_second_index in range(len(crm.crm_data_list)):
-                if crm.crm_data_list[crm_data_list_first_index][crm_data_list_second_index] == ask_user_id:
+        for first_index in range(length):
+            for second_index in range(length):
+                if ask_user_id == crm.table[first_index][second_index]:
                     invalid_user = False
                     new_name = input("New name: ")
-                    name = new_name
                     while valid_email != True:
                         new_email = input("E-mail: ")
+        
                         if re.match("\A(?P<name>[\w\-_]+)@(?P<domain>[\w\-_]+).(?P<toplevel>[\w]+)\Z",new_email,re.IGNORECASE):
                             valid_email = True
-                            email = new_email
                         else:
                             print("Invalid e-mail adress!")
-                    subsribed_status = input("Is %s subsribed? (y/n) "%name)
+                    subsribed_status = input("Is %s subsribed? (y/n) "%new_name)
                     if subsribed_status == "y":
-                        new_subsribed = 1
-                        subscribed = new_subsribed
+                            new_subsribed = "1"
                     elif subsribed_status == "n":
-                        new_subsribed = 0
-                        subscribed = new_subsribed
-        if invalid_user == True:
-            print("Invalid user ID.")
-                
+                            new_subsribed = "0"
 
+                    crm.table[first_index][second_index] = ask_user_id
+                    crm.table[first_index][second_index+1] = new_name
+                    crm.table[first_index][second_index+2] = new_email
+                    crm.table[first_index][second_index+3] = new_subsribed
+                    crm.modify_csv_data()
+        if invalid_user == True:
+            print("Invalid id")
+          
 
 def delete_customer():
-    view.print_error_message("Not implemented yet.")
 
+    invalid_user = True
+    #delete_done = False
+    delete_user_id = input("Please give the ID of the user you'd like to delete: ")
+    for first_index in range(1):
+        for second_index in range(1):
+            if delete_user_id == crm.table[first_index][second_index]:
+                invalid_user = False
+                crm.table.pop(first_index)
+                crm.modify_csv_data()
+        if invalid_user == True:
+            print("Invalid id")
 
 def get_subscribed_emails():
     print("E-mail adresses of the subsribed customers: ")

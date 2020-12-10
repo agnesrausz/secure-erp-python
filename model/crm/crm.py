@@ -12,12 +12,11 @@ from model import data_manager, util
 DATAFILE = "model/crm/crm.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
-crm_data_list = data_manager.read_table_from_file(DATAFILE, separator=';')
 
-table = crm_data_list
+table = data_manager.read_table_from_file(DATAFILE, separator=';')
 
 def modify_csv_data():
-    writing_in_file = data_manager.write_table_to_file(DATAFILE, table, separator=";")
+    data_manager.write_table_to_file(DATAFILE, table, separator=";")
 
 def create_id():
     user_id = util.generate_id(number_of_small_letters=4,
@@ -36,6 +35,6 @@ class one_customer:
         self.email = email
         self.subscribed = subscribed
 
-for customer in range(len(crm_data_list)):
-    customers.append(one_customer(crm_data_list[customer][0], crm_data_list[customer][1], crm_data_list[customer][2],crm_data_list[customer][3]))
+for customer in range(len(table)):
+    customers.append(one_customer(table[customer][0], table[customer][1], table[customer][2],table[customer][3]))
 
