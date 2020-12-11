@@ -9,23 +9,38 @@ def list_employees():
 
 
 def add_employee():
-    list_of_Employees = hr.Employees
     id = hr.id
     name = input('Add name!')
     birth_date = input('Add birth date!')
     department = input('Add department!')
     clearance_lvl = input('Add clearance level!')
     new_Employee = hr.Employee(id, name, birth_date, department, clearance_lvl)
-    list_of_Employees.append(new_Employee)
-    hr.write(list_of_Employees)
+    hr.Employees.append(new_Employee)
+    hr.write(hr.Employees)
 
 
 def update_employee():
-    view.print_error_message("Not implemented yet.")
+    user_id = input('Add id!')
+    counter = 0
+    for Employee in hr.Employees:
+        if Employee.id == user_id:
+            name = input('Add name!')
+            birth_date = input('Add birth date!')
+            department = input('Add department!')
+            clearance_lvl = input('Add clearance level!')
+            updated_Employee = hr.Employee(user_id, name, birth_date, department, clearance_lvl)
+            hr.Employees[counter] = updated_Employee
+        counter += 1
+    hr.write(hr.Employees)
 
 
 def delete_employee():
-    view.print_error_message("Not implemented yet.")
+    user_id = input('Add id!')
+    new_list_of_Employees = []
+    for Employee in hr.Employees:
+        if Employee.id != user_id:
+            new_list_of_Employees.append(Employee)
+    hr.write(new_list_of_Employees)
 
 
 def get_oldest_and_youngest():
