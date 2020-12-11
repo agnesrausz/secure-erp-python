@@ -38,19 +38,23 @@ class Employee:
         self.clearance_lvl = clearance_lvl
 
 
-Employees = []
+def creat_Employees_list():
+    Empls = []
+    for employee in range(len(employees)):
+        # commnet not tested
+        # datas = []
+        # for employee_data in range(len(employees[employee])):
+        #     datas.append(employees[employee][employee_data])
+        # Employees.append(Employee(datas)
+        Empls.append(Employee(
+            employees[employee][0],
+            employees[employee][1],
+            employees[employee][2],
+            employees[employee][3],
+            employees[employee][4]))
+    return Empls
 
-for employee in range(len(employees)):
-    # commnet not tested
-    # datas = []
-    # for employee_data in range(len(employees[employee])):
-    #     datas.append(employees[employee][employee_data])
-    # Employees.append(Employee(datas)
-    Employees.append(Employee(
-        employees[employee][0], 
-        employees[employee][1], 
-        employees[employee][2], 
-        employees[employee][3], 
-        employees[employee][4]))
 
 id = util.generate_id()
+
+Employees = creat_Employees_list()
