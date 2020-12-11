@@ -15,10 +15,18 @@ HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
 
 employees = data_manager.read_table_from_file(DATAFILE, separator=';')
 
-def write(Employees):
+
+def write(Empls):
     # Employees convert to 2D list
-    table = 
-    write_table_to_file(DATAFILE, table, separator=';')
+    table = []
+    for E in range(len(Empls)):
+        table.append([])
+        table[E].append(Empls[E].id)
+        table[E].append(Empls[E].name)
+        table[E].append(Empls[E].birth_date)
+        table[E].append(Empls[E].department)
+        table[E].append(Empls[E].clearance_lvl)
+    data_manager.write_table_to_file(DATAFILE, table, separator=';')
 
 
 class Employee:

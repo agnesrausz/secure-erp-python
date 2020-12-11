@@ -11,13 +11,14 @@ def list_employees():
 def add_employee():
     list_of_Employees = hr.Employees
     id = hr.id
-    name = input()
-    birth_date = input()
-    department = input()
-    clearance_lvl = input()
+    name = input('Add name!')
+    birth_date = input('Add birth date!')
+    department = input('Add department!')
+    clearance_lvl = input('Add clearance level!')
     new_Employee = hr.Employee(id, name, birth_date, department, clearance_lvl)
-    new_list_of_Employees = list_of_Employees.append(new_Employee)
-    hr.write(new_list_of_Employees)
+    list_of_Employees.append(new_Employee)
+    hr.write(list_of_Employees)
+
 
 def update_employee():
     view.print_error_message("Not implemented yet.")
