@@ -87,8 +87,8 @@ for the development.
 
 ## Background materials
 
-- <i class="far fa-exclamation"></i> [MVC intro](project/curriculum/materials/pages/general/mvc-pattern-intro.md)
+- <i class="far fa-exclamation"></i> [MVC intro](./mvc-pattern-intro.md)
 - <i class="far fa-exclamation"></i> [About Python modules](https://realpython.com/python-modules-packages/) (until the section "Python Packages")
-- <i class="far fa-exclamation"></i> [File handling](project/curriculum/materials/pages/python/file-handling.md)
-- <i class="far fa-exclamation"></i> [Magic numbers](project/curriculum/materials/pages/general/magic-numbers.md)
-- <i class="far fa-exclamation"></i> [Clean code](project/curriculum/materials/pages/general/clean-code.md)
+- File handling
+- Magic numbers
+- Clean code
