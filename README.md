@@ -43,8 +43,8 @@ for the development.
 ## Tasks
 
 1. Implement the CRM module with basic and special operations.
-    - Once the CRM module is selected, choosing option 1 will ask the user to type the name, email and subscribed status for a new customer. After the last field is introduced a new customer is introduced with an random id.
-    - Once the CRM module is selected, choosing option 2 will print all the customers.
+    - Once the CRM module is selected, choosing option 2 will ask the user to type the name, email and subscribed status for a new customer. After the last field is introduced a new customer is introduced with an random id.
+    - Once the CRM module is selected, choosing option 1 will print all the customers.
     - Once the CRM module is selected, choosing option 3 will ask the user for the id  of a customer. If the id belongs to an existent customer then the user will enter new values for the name, email and subscribe status. Once the last field is entered,  the customer fields are updated with the given values.
     - Once the CRM module is selected, choosing option 4 will ask the user for the id  of a customer. If the id belongs to an existent customer then that it will be deleted from the database.
     - (5) Get the emails of subscribed customers.
