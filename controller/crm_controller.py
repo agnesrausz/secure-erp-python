@@ -58,3 +58,5 @@ def menu():
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)
+        except ValueError:
+            view.print_error_message("Please enter a number!")
