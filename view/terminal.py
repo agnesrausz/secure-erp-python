@@ -59,7 +59,7 @@ def get_input(label):
     Args:
         label: str - the label before the user prompt
     """
-    return input(f"{label}: ")
+    return input(f"{label}: ").strip()
 
 
 def get_inputs(labels):
