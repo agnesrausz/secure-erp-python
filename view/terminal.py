@@ -1,3 +1,7 @@
+import os
+import time
+
+
 def print_menu(title, list_options):
     """Prints options in standard menu format like this:
 
