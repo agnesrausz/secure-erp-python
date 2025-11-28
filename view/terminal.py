@@ -78,6 +78,13 @@ def print_error_message(message):
         message: str - the error message
     """
     print(f"Error: {message}")
+def wait_for_enter():
+    """Waits for the user to press Enter to continue."""
+    input("Press Enter to continue...")
+
+def wait():
+    time.sleep(1)
+
 def clear():
     """Clears the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
