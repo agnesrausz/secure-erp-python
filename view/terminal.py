@@ -78,3 +78,6 @@ def print_error_message(message):
         message: str - the error message
     """
     print(f"Error: {message}")
+def clear():
+    """Clears the terminal screen."""
+    os.system('cls' if os.name == 'nt' else 'clear')
