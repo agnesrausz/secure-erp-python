@@ -68,7 +68,10 @@ def get_inputs(labels):
     Args:
         labels: list - the list of the labels to be displayed before each prompt
     """
-    pass
+    inputs = []
+    for label in labels:
+        inputs.append(get_input(label))
+    return inputs
 
 
 def print_error_message(message):
@@ -78,6 +81,9 @@ def print_error_message(message):
         message: str - the error message
     """
     print(f"Error: {message}")
+    wait_for_enter()
+
+
 def wait_for_enter():
     """Waits for the user to press Enter to continue."""
     input("Press Enter to continue...")
