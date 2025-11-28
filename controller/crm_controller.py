@@ -7,7 +7,58 @@ def list_customers():
 
 
 def add_customer():
-    view.print_error_message("Not implemented yet.")
+    """Add new customer to the CRM table."""
+    customer = {"name": "",
+                "email": "",
+                "subscribed": ""}
+
+    is_valid_name = False
+    while not is_valid_name:
+        view.clear()
+        view.print_message("Adding a new customer")
+        name = view.get_input("Name").capitalize()
+        if not name:
+            view.print_error_message("Name cannot be empty. Please enter a valid name.")
+        elif any((not char.isalnum() and char not in [" ", "-", "."]) for char in name):
+            view.print_error_message("Name contains invalid characters. Please enter a valid name.")
+        else:
+            is_valid_name = True
+            customer['name'] = name
+
+    is_valid_email = False
+    while not is_valid_email:
+        view.clear()
+        view.print_message("Adding a new customer")
+        view.print_message(f"Name: {customer['name']}")
+        email = view.get_input("Email")
+        if "@" not in email or "." not in email.split("@")[-1]:
+            view.print_error_message("Invalid email format. Please enter a valid email address.")
+        else:
+            is_valid_email = True
+            customer['email'] = email
+
+
+    is_valid_subscribed = False
+    while not is_valid_subscribed:
+        view.clear()
+        view.print_message("Adding a new customer")
+        view.print_message(f"Name: {customer['name']}")
+        view.print_message(f"Email: {customer['email']}")
+        subscribed = view.get_input("Subscribed (1: yes, 0: no)")
+        if subscribed not in ["0", "1"]:
+            view.print_error_message("Subscribed must be 1 (yes) or 0 (no). Please enter a valid value.")
+        else:
+            is_valid_subscribed = True
+            customer['subscribed'] = subscribed
+
+    crm.add_customer(customer)
+    view.clear()
+    view.print_message("Adding a new customer")
+    view.print_message(f"Name: {customer['name']}")
+    view.print_message(f"Email: {customer['email']}")
+    view.print_message(f"Subscribed: {customer['subscribed']}")
+    view.print_message("New customer added.")
+    view.wait_for_enter()
 
 
 def update_customer():
