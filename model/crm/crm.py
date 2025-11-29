@@ -17,12 +17,14 @@ HEADERS = ["id", "name", "email", "subscribed"]
 def add_customer(customer):
     table = data_manager.read_table_from_file(DATAFILE)
     customer["id"] = util.generate_id()
-    if (not customer.get("id") or
-            not customer.get("name") or
-            not customer.get("email") or
-            not customer.get("subscribed")):
-        raise KeyError("Customer dictionary is missing required fields.")
-    table_row = [customer["id"], customer["name"], customer["email"], customer["subscribed"]]
+    for key in HEADERS:
+        if key not in customer:
+            raise KeyError(f"Customer dictionary is missing required field: {key}")
+        if customer[key] == "":
+            raise KeyError(f"Customer field '{key}' must not be empty.")
+    table_row = []
+    for key in HEADERS:
+        table_row.append(customer[key])
     table.append(table_row)
     data_manager.write_table_to_file(DATAFILE, table)
     return customer["id"]
