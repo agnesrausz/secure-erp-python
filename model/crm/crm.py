@@ -28,3 +28,14 @@ def add_customer(customer):
     table.append(table_row)
     data_manager.write_table_to_file(DATAFILE, table)
     return customer["id"]
+
+
+def get_customers():
+    table = data_manager.read_table_from_file(DATAFILE)
+    customers = []
+    for row in table:
+        customer = {}
+        for i in range(len(HEADERS)):
+            customer[HEADERS[i]] = row[i]
+        customers.append(customer)
+    return customers
