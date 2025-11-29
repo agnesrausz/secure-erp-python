@@ -3,7 +3,18 @@ from view import terminal as view
 
 
 def list_customers():
-    view.print_error_message("Not implemented yet.")
+    """Display all customers in the CRM table."""
+    customers = crm.get_customers()
+    headers = list(customers[0].keys())
+    table = [headers]
+    for customer in customers:
+        row = []
+        for header in headers:
+            row.append(customer[header])
+        table.append(row)
+    view.print_table(table)
+    view.wait_for_enter()
+
 
 
 def add_customer():
