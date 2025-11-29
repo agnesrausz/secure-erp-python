@@ -55,7 +55,30 @@ def print_table(table):
     Args:
         table: list of lists - the table to print out
     """
-    pass
+    clear()
+    if not table:
+        print("No data available to display.")
+        return
+
+    max_cols = len(table[0])
+    col_widths = [max(len(str(row[i])) for row in table) + 2 for i in range(max_cols)]
+    table_width = sum(col_widths) + len(col_widths) + 1
+
+    print("/" + "-" * (table_width - 2) + "\\")
+    for row in table:
+        row_str = "|"
+        for i, item in enumerate(row):
+            item_str = str(item).strip()
+            spacing = (col_widths[i] - len(item_str) - 1)
+            start_spaces = spacing // 2
+            end_spaces = spacing - start_spaces
+            item_str = " " * start_spaces + item_str + " " * end_spaces
+            row_str += f" {item_str}" + "|"
+        print(row_str)
+        if row != table[-1]:
+            print("|" + "-" * (table_width - 2) + "|")
+        else:
+            print("\\" + "-" * (table_width - 2) + "/")
 
 
 def get_input(label):
@@ -93,8 +116,10 @@ def wait_for_enter():
     """Waits for the user to press Enter to continue."""
     input("Press Enter to continue...")
 
+
 def wait():
     time.sleep(1)
+
 
 def clear():
     """Clears the terminal screen."""
