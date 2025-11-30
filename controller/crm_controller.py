@@ -73,6 +73,10 @@ def add_customer():
 
 
 def update_customer():
+    # TODO: Once the CRM module is selected, choosing option 3 will ask the user for the id of a customer.
+    #  If the id belongs to an existent customer then the user will enter new values for the name,
+    #  email and subscribe status. Once the last field is entered,
+    #  the customer fields are updated with the given values.
     view.print_error_message("Not implemented yet.")
 
 
