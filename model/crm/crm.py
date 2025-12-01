@@ -39,3 +39,11 @@ def get_customers():
             customer[HEADERS[i]] = row[i]
         customers.append(customer)
     return customers
+
+
+def is_id_exist(customer_id):
+    table = data_manager.read_table_from_file(DATAFILE)
+    for row in table:
+        if row[0] == customer_id:
+            return True
+    return False
