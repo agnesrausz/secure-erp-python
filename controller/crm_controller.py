@@ -16,7 +16,6 @@ def list_customers():
     view.wait_for_enter()
 
 
-
 def add_customer():
     """Add new customer to the CRM table."""
     customer = {"name": "",
@@ -48,7 +47,6 @@ def add_customer():
             is_valid_email = True
             customer['email'] = email
 
-
     is_valid_subscribed = False
     while not is_valid_subscribed:
         view.clear()
@@ -77,7 +75,71 @@ def update_customer():
     #  If the id belongs to an existent customer then the user will enter new values for the name,
     #  email and subscribe status. Once the last field is entered,
     #  the customer fields are updated with the given values.
-    view.print_error_message("Not implemented yet.")
+
+    customer = {"id": "",
+                "name": "",
+                "email": "",
+                "subscribed": ""}
+
+    is_valid_id = False
+    while not is_valid_id:
+        view.clear()
+        view.print_message("Updating a customer")
+        customer_id = view.get_input("Customer ID")
+        if not customer_id:
+            view.print_error_message("Customer ID cannot be empty. Please enter a valid ID.")
+        elif not crm.is_id_exist(customer_id):
+            view.print_error_message("Customer ID does not exist. Please enter a valid ID.")
+        else:
+            is_valid_id = True
+            customer['id'] = customer_id
+
+    is_valid_name = False
+    while not is_valid_name:
+        view.clear()
+        view.print_message("Updating a customer")
+        name = view.get_input("Name").capitalize()
+        if not name:
+            view.print_error_message("Name cannot be empty. Please enter a valid name.")
+        elif any((not char.isalnum() and char not in [" ", "-", "."]) for char in name):
+            view.print_error_message("Name contains invalid characters. Please enter a valid name.")
+        else:
+            is_valid_name = True
+            customer['name'] = name
+
+    is_valid_email = False
+    while not is_valid_email:
+        view.clear()
+        view.print_message("Updating a customer")
+        view.print_message(f"Name: {customer['name']}")
+        email = view.get_input("Email")
+        if "@" not in email or "." not in email.split("@")[-1]:
+            view.print_error_message("Invalid email format. Please enter a valid email address.")
+        else:
+            is_valid_email = True
+            customer['email'] = email
+
+    is_valid_subscribed = False
+    while not is_valid_subscribed:
+        view.clear()
+        view.print_message("Updating a customer")
+        view.print_message(f"Name: {customer['name']}")
+        view.print_message(f"Email: {customer['email']}")
+        subscribed = view.get_input("Subscribed (1: yes, 0: no)")
+        if subscribed not in ["0", "1"]:
+            view.print_error_message("Subscribed must be 1 (yes) or 0 (no). Please enter a valid value.")
+        else:
+            is_valid_subscribed = True
+            customer['subscribed'] = subscribed
+
+    crm.update_customer(customer)
+    view.clear()
+    view.print_message("Updating a customer")
+    view.print_message(f"Name: {customer['name']}")
+    view.print_message(f"Email: {customer['email']}")
+    view.print_message(f"Subscribed: {customer['subscribed']}")
+    view.print_message("Customer updated.")
+    view.wait_for_enter()
 
 
 def delete_customer():
