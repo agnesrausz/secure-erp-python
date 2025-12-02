@@ -47,3 +47,14 @@ def is_id_exist(customer_id):
         if row[0] == customer_id:
             return True
     return False
+
+
+def update_customer(customer):
+    table = data_manager.read_table_from_file(DATAFILE)
+    for row in range(len(table)):
+        if table[row][0] == customer["id"]:
+            for col in range(len(HEADERS)):
+                table[row][col] = customer[HEADERS[col]]
+            data_manager.write_table_to_file(DATAFILE, table)
+            return
+    raise ValueError(f"Customer with id {customer['id']} not found.")
