@@ -33,10 +33,10 @@ def add_customer(customer):
 def get_customers():
     table = data_manager.read_table_from_file(DATAFILE)
     customers = []
-    for row in table:
+    for row in range(len(table)):
         customer = {}
-        for i in range(len(HEADERS)):
-            customer[HEADERS[i]] = row[i]
+        for col in range(len(HEADERS)):
+            customer[HEADERS[col]] = table[row][col]
         customers.append(customer)
     return customers
 
