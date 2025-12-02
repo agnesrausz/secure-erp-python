@@ -5,7 +5,6 @@ from view import terminal as view
 
 
 # TODO
-#   (5) Get the transaction that made the biggest revenue.
 #   (6) Get the product that made the biggest revenue altogether.
 #   (7) Count number of transactions between two given dates.
 #   (8) Sum the price of transactions between two given dates.
@@ -207,7 +206,48 @@ def delete_transaction():
 
 
 def get_biggest_revenue_transaction():
-    view.print_error_message("Not implemented yet.")
+    """Get the transaction that made the biggest revenue."""
+    transactions = sales.get_transactions()
+    if not transactions:
+        view.print_message("No transactions available.")
+        view.wait_for_enter()
+        return
+
+    # find maximum price (skip invalid/missing prices)
+    max_price = None
+    for transaction in transactions:
+        try:
+            price = float(transaction.get("price", ""))
+        except (TypeError, ValueError):
+            continue
+        if max_price is None or price > max_price:
+            max_price = price
+
+    if max_price is None:
+        view.print_message("No valid priced transactions found.")
+        view.wait_for_enter()
+        return
+
+    # collect all transactions that have that max price
+    top_transactions = []
+    for transaction in transactions:
+        try:
+            if float(transaction.get("price", "")) == max_price:
+                top_transactions.append(transaction)
+        except (TypeError, ValueError):
+            continue
+
+    # display results
+    if not top_transactions:
+        view.print_message("No valid priced transactions found.")
+    else:
+        table = [sales.HEADERS]
+        for transaction in top_transactions:
+            row = [transaction.get(h, "") for h in sales.HEADERS]
+            table.append(row)
+        view.print_table(table)
+        view.print_message(f" Transaction(s) with the biggest revenue ({max_price}) displayed above.")
+    view.wait_for_enter()
 
 
 def get_biggest_revenue_product():
