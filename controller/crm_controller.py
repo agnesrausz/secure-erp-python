@@ -60,13 +60,16 @@ def add_customer():
             is_valid_subscribed = True
             customer['subscribed'] = subscribed
 
-    crm.add_customer(customer)
-    view.clear()
-    view.print_message("Adding a new customer")
-    view.print_message(f"Name: {customer['name']}")
-    view.print_message(f"Email: {customer['email']}")
-    view.print_message(f"Subscribed: {customer['subscribed']}")
-    view.print_message("New customer added.")
+    try:
+        crm.add_customer(customer)
+        view.clear()
+        view.print_message("Adding a new customer")
+        view.print_message(f"Name: {customer['name']}")
+        view.print_message(f"Email: {customer['email']}")
+        view.print_message(f"Subscribed: {customer['subscribed']}")
+        view.print_message("New customer added.")
+    except KeyError as err:
+        view.print_error_message(err)
     view.wait_for_enter()
 
 
@@ -135,13 +138,16 @@ def update_customer():
             is_valid_subscribed = True
             customer['subscribed'] = subscribed
 
-    crm.update_customer(customer)
-    view.clear()
-    view.print_message("Updating a customer")
-    view.print_message(f"Name: {customer['name']}")
-    view.print_message(f"Email: {customer['email']}")
-    view.print_message(f"Subscribed: {customer['subscribed']}")
-    view.print_message("Customer updated.")
+    try:
+        crm.update_customer(customer)
+        view.clear()
+        view.print_message("Updating a customer")
+        view.print_message(f"Name: {customer['name']}")
+        view.print_message(f"Email: {customer['email']}")
+        view.print_message(f"Subscribed: {customer['subscribed']}")
+        view.print_message("Customer updated.")
+    except KeyError as err:
+        view.print_error_message(err)
     view.wait_for_enter()
 
 
@@ -160,10 +166,13 @@ def delete_customer():
         else:
             is_valid_id = True
 
-    crm.delete_customer_by_id(customer_id)
-    view.clear()
-    view.print_message('Delete a customer')
-    view.print_message(f"Customer with ID {customer_id} has been deleted.")
+    try:
+        crm.delete_customer_by_id(customer_id)
+        view.clear()
+        view.print_message('Delete a customer')
+        view.print_message(f"Customer with ID {customer_id} has been deleted.")
+    except KeyError as err:
+        view.print_error_message(err)
     view.wait_for_enter()
 
 
