@@ -9,7 +9,6 @@ Data table structure:
 
 from model import data_manager, util
 
-
 DATAFILE = "model/crm/crm.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
