@@ -5,7 +5,7 @@ from view import terminal as view
 def list_customers():
     """Display all customers in the CRM table."""
     customers = crm.get_customers()
-    headers = list(customers[0].keys())
+    headers = crm.HEADERS
     table = [headers]
     for customer in customers:
         row = []
