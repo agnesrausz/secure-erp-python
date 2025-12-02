@@ -61,11 +61,11 @@ def update_customer(customer):
 
 def get_customer_by_id(customer_id):
     table = data_manager.read_table_from_file(DATAFILE)
-    for row in table:
-        if row[0] == customer_id:
+    for row in range(len(table)):
+        if table[row][0] == customer_id:
             customer = {}
-            for i in range(len(HEADERS)):
-                customer[HEADERS[i]] = row[i]
+            for col in range(len(HEADERS)):
+                customer[HEADERS[col]] = table[row][col]
             return customer
     raise ValueError(f"Customer with id {customer_id} not found.")
 
@@ -78,4 +78,3 @@ def delete_customer_by_id(customer_id):
             data_manager.write_table_to_file(DATAFILE, table)
             return
     raise ValueError(f"Customer with id {customer_id} not found.")
-
