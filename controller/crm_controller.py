@@ -168,7 +168,13 @@ def delete_customer():
 
 
 def get_subscribed_emails():
-    view.print_error_message("Not implemented yet.")
+    """Display emails of subscribed customers."""
+    customers = crm.get_customers()
+    subscribed_emails = [customer['email'] for customer in customers if customer['subscribed'] == '1']
+    view.print_message("Subscribed customer emails:")
+    for email in subscribed_emails:
+        view.print_message(email)
+    view.wait_for_enter()
 
 
 def run_operation(option):
