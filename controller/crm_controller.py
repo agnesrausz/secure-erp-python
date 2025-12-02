@@ -146,7 +146,25 @@ def update_customer():
 
 
 def delete_customer():
-    view.print_error_message("Not implemented yet.")
+    """Delete a customer from the CRM table."""
+    customer_id = ""
+    is_valid_id = False
+    while not is_valid_id:
+        view.clear()
+        view.print_message("Delete a customer")
+        customer_id = view.get_input("Customer ID")
+        if not customer_id:
+            view.print_error_message("Customer ID cannot be empty. Please enter a valid ID.")
+        elif not crm.is_id_exist(customer_id):
+            view.print_error_message("Customer ID does not exist. Please enter a valid ID.")
+        else:
+            is_valid_id = True
+
+    crm.delete_customer_by_id(customer_id)
+    view.clear()
+    view.print_message('Delete a customer')
+    view.print_message(f"Customer with ID {customer_id} has been deleted.")
+    view.wait_for_enter()
 
 
 def get_subscribed_emails():

@@ -69,3 +69,14 @@ def get_customer_by_id(customer_id):
                 customer[HEADERS[i]] = row[i]
             return customer
     raise ValueError(f"Customer with id {customer_id} not found.")
+
+
+def delete_customer_by_id(customer_id):
+    table = data_manager.read_table_from_file(DATAFILE)
+    for row in range(len(table)):
+        if table[row][0] == customer_id:
+            table.pop(row)
+            data_manager.write_table_to_file(DATAFILE, table)
+            return
+    raise ValueError(f"Customer with id {customer_id} not found.")
+
