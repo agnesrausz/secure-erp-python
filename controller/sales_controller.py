@@ -5,7 +5,6 @@ from view import terminal as view
 
 
 # TODO
-#   (6) Get the product that made the biggest revenue altogether.
 #   (7) Count number of transactions between two given dates.
 #   (8) Sum the price of transactions between two given dates.
 
