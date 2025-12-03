@@ -241,12 +241,10 @@ def get_biggest_revenue_transaction():
     if not top_transactions:
         view.print_message("No valid priced transactions found.")
     else:
-        table = [sales.HEADERS]
+        view.clear()
+        view.print_message(f"Transaction(s) with the biggest revenue ({max_price}).")
         for transaction in top_transactions:
-            row = [transaction.get(h, "") for h in sales.HEADERS]
-            table.append(row)
-        view.print_table(table)
-        view.print_message(f" Transaction(s) with the biggest revenue ({max_price}) displayed above.")
+            view.print_message(f"Transaction ID: {transaction['id']}")
     view.wait_for_enter()
 
 
