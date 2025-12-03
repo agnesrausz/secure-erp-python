@@ -261,16 +261,17 @@ def get_biggest_revenue_product():
             products[product] += price
         else:
             products[product] = price
+
+    # display results
     if not products:
         view.print_message("No products found.")
-        view.wait_for_enter()
-        return
-    max_revenue = max(products.values())
-    top_products = [product for product, revenue in products.items() if revenue == max_revenue]
-    view.clear()
-    view.print_message(f"Product(s) with the biggest revenue ({max_revenue}):")
-    for product in top_products:
-        view.print_message(f"- {product}")
+    else:
+        max_revenue = max(products.values())
+        top_products = [product for product, revenue in products.items() if revenue == max_revenue]
+        view.clear()
+        view.print_message(f"Product(s) with the biggest revenue ({max_revenue}):")
+        for product in top_products:
+            view.print_message(f"- {product}")
     view.wait_for_enter()
 
 
