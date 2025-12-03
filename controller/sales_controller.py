@@ -249,7 +249,30 @@ def get_biggest_revenue_transaction():
 
 
 def get_biggest_revenue_product():
-    view.print_error_message("Not implemented yet.")
+    """Get the product that made the biggest revenue altogether."""
+    transactions = sales.get_transactions()
+    products = {}
+    for transaction in transactions:
+        product = transaction.get("product", "")
+        try:
+            price = float(transaction.get("price", ""))
+        except (TypeError, ValueError):
+            continue
+        if product in products:
+            products[product] += price
+        else:
+            products[product] = price
+    if not products:
+        view.print_message("No products found.")
+        view.wait_for_enter()
+        return
+    max_revenue = max(products.values())
+    top_products = [product for product, revenue in products.items() if revenue == max_revenue]
+    view.clear()
+    view.print_message(f"Product(s) with the biggest revenue ({max_revenue}):")
+    for product in top_products:
+        view.print_message(f"- {product}")
+    view.wait_for_enter()
 
 
 def count_transactions_between():
