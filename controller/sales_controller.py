@@ -4,9 +4,6 @@ from model.sales import sales
 from view import terminal as view
 
 
-# TODO
-#   (8) Sum the price of transactions between two given dates.
-
 def list_transactions():
     """Display a list of transactions."""
     transactions = sales.get_transactions()
@@ -323,7 +320,55 @@ def count_transactions_between():
 
 
 def sum_transactions_between():
-    view.print_error_message("Not implemented yet.")
+    """Sum the price of transactions between two given dates."""
+    transactions = sales.get_transactions()
+
+    start_date_str = ""
+    is_valid_start_date = False
+    while not is_valid_start_date:
+        view.clear()
+        view.print_message("Summing transaction prices between two dates")
+        start_date_str = view.get_input("Start Date (YYYY-MM-DD)")
+
+        if not start_date_str:
+            view.print_error_message("Start date cannot be empty. Please enter a valid date.")
+        else:
+            try:
+                start_date_str = util.parse_date(start_date_str)
+                is_valid_start_date = True
+            except ValueError:
+                view.print_error_message("Invalid date. Please enter date in YYYY-MM-DD format.")
+
+    end_date_str = ""
+    is_valid_end_date = False
+    while not is_valid_end_date:
+        view.clear()
+        view.print_message("Summing transaction prices between two dates")
+        end_date_str = view.get_input("Start Date (YYYY-MM-DD)")
+
+        if not end_date_str:
+            view.print_error_message("Start date cannot be empty. Please enter a valid date.")
+        else:
+            try:
+                end_date_str = util.parse_date(end_date_str)
+                is_valid_end_date = True
+            except ValueError:
+                view.print_error_message("Invalid date. Please enter date in YYYY-MM-DD format.")
+
+    sum_transaction = 0.0
+    for transaction in transactions:
+        transaction_date = transaction.get("date", "")
+        if start_date_str <= transaction_date <= end_date_str:
+            try:
+                price = float(transaction.get("price", ""))
+                sum_transaction += price
+            except (TypeError, ValueError):
+                continue
+
+    view.clear()
+    view.print_message("Summing transaction prices between two dates")
+    view.print_message(f"Total price of transactions between {start_date_str} and {end_date_str}: {sum_transaction}")
+    view.wait_for_enter()
 
 
 def run_operation(option):
