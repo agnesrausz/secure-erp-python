@@ -1,7 +1,13 @@
 from model.hr import hr
 from view import terminal as view
 
-
+# TODO:
+#     (1-4) Provide basic CRUD operations.
+#     (5) Return the names of the oldest and the youngest employees as a tuple.
+#     (6) Return the average age of employees.
+#     (7) Return the names of employees having birthdays within the two weeks starting from the given date.
+#     (8) Return the number of employees with at least the given clearance level.
+#     (9) Return the number of employees per department in a dictionary (like {'dep1': 5, 'dep2': 11}).
 def list_employees():
     view.print_error_message("Not implemented yet.")
 
