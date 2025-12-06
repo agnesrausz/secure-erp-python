@@ -280,7 +280,29 @@ def get_average_age():
 
 
 def next_birthdays():
-    view.print_error_message("Not implemented yet.")
+    """Display names of employees with birthdays in the next two weeks."""
+    employees = hr.get_employees()
+    current_date = util.get_current_date()
+    end_date = util.get_delayed_date(current_date, 14)
+
+    upcoming = []
+    for employee in employees:
+        birthdate = util.parse_date_to_date(employee["Date of birth"])
+        birthday_this_year = util.get_birthday_in_year(birthdate, current_date.year)
+
+        if current_date <= birthday_this_year <= end_date:
+            upcoming.append(employee["Name"])
+
+    view.clear()
+    view.print_message("Employees with birthdays in the next two weeks")
+    if upcoming:
+        for name in upcoming:
+            view.print_message(name)
+    else:
+        view.print_message("No upcoming birthdays.")
+
+    view.wait_for_enter()
+    return upcoming
 
 
 def count_employees_with_clearance():
