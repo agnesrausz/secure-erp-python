@@ -184,6 +184,19 @@ def update_employee():
             is_valid_clearance = True
             employee['Clearance'] = clearance
 
+    try:
+        hr.update_employee(employee)
+        view.clear()
+        view.print_message("Updating an employee")
+        view.print_message(f"Name: {employee['Name']}")
+        view.print_message(f"Date of birth: {employee['Date of birth']}")
+        view.print_message(f"Department: {employee['Department']}")
+        view.print_message(f"Clearance: {employee['Clearance']}")
+        view.print_message("Employee updated.")
+    except KeyError as err:
+        view.print_error_message(err)
+    view.wait_for_enter()
+
 
 def delete_employee():
     """Delete an employee from the HR system."""
