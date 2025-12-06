@@ -224,7 +224,28 @@ def delete_employee():
 
 
 def get_oldest_and_youngest():
-    view.print_error_message("Not implemented yet.")
+    """Display the names of the oldest and youngest employees."""
+    employees = hr.get_employees()
+    oldest_employee = None
+    oldest_birthdate = None
+    youngest_employee = None
+    youngest_birthdate = None
+
+    for employee in employees:
+        birthdate = util.parse_date(employee['Date of birth'])
+        if oldest_birthdate is None or birthdate < oldest_birthdate:
+            oldest_birthdate = birthdate
+            oldest_employee = employee['Name']
+        if youngest_birthdate is None or birthdate > youngest_birthdate:
+            youngest_birthdate = birthdate
+            youngest_employee = employee['Name']
+
+    view.clear()
+    view.print_message("Oldest and youngest employees")
+    view.print_message(f"Oldest employee: {oldest_employee}")
+    view.print_message(f"Youngest employee: {youngest_employee}")
+    view.wait_for_enter()
+    return oldest_employee, youngest_employee
 
 
 def get_average_age():
