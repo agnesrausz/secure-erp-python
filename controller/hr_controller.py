@@ -3,12 +3,6 @@ from model.hr import hr
 from view import terminal as view
 
 
-# TODO:
-#     (5) Return the names of the oldest and the youngest employees as a tuple.
-#     (6) Return the average age of employees.
-#     (7) Return the names of employees having birthdays within the two weeks starting from the given date.
-#     (8) Return the number of employees with at least the given clearance level.
-#     (9) Return the number of employees per department in a dictionary (like {'dep1': 5, 'dep2': 11}).
 def list_employees():
     """ Display a list of employees with their details. """
     employees = hr.get_employees()
@@ -338,7 +332,23 @@ def count_employees_with_clearance():
 
 
 def count_employees_per_department():
-    view.print_error_message("Not implemented yet.")
+    """Display the number of employees per department."""
+    employees = hr.get_employees()
+    department_counts = {}
+
+    for employee in employees:
+        department = employee["Department"]
+        if department in department_counts:
+            department_counts[department] += 1
+        else:
+            department_counts[department] = 1
+
+    view.clear()
+    view.print_message("Employees per department")
+    for department, count in department_counts.items():
+        view.print_message(f"{department}: {count}")
+    view.wait_for_enter()
+    return department_counts
 
 
 def run_operation(option):
