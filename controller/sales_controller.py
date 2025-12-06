@@ -344,10 +344,10 @@ def sum_transactions_between():
     while not is_valid_end_date:
         view.clear()
         view.print_message("Summing transaction prices between two dates")
-        end_date_str = view.get_input("Start Date (YYYY-MM-DD)")
+        end_date_str = view.get_input("End Date (YYYY-MM-DD)")
 
         if not end_date_str:
-            view.print_error_message("Start date cannot be empty. Please enter a valid date.")
+            view.print_error_message("End date cannot be empty. Please enter a valid date.")
         else:
             try:
                 end_date_str = util.parse_date_to_iso_format(end_date_str)
