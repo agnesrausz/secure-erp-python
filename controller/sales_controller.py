@@ -64,7 +64,7 @@ def add_transaction():
         except ValueError:
             view.print_error_message("Invalid price format. Please enter a numeric value.")
 
-    transaction['date'] = util.get_current_time_iso_format()
+    transaction['date'] = util.get_current_date_iso_format()
 
     try:
         sales.add_transaction(transaction)
@@ -153,7 +153,7 @@ def update_transaction():
             is_valid_date = True
         else:
             try:
-                parsed_date = util.parse_date(date_str)
+                parsed_date = util.parse_date_to_iso_format(date_str)
                 is_valid_date = True
                 transaction["date"] = parsed_date
             except ValueError:
@@ -286,7 +286,7 @@ def count_transactions_between():
             view.print_error_message("Start date cannot be empty. Please enter a valid date.")
         else:
             try:
-                start_date_str = util.parse_date(start_date_str)
+                start_date_str = util.parse_date_to_iso_format(start_date_str)
                 is_valid_start_date = True
             except ValueError:
                 view.print_error_message("Invalid date. Please enter date in YYYY-MM-DD format.")
@@ -302,7 +302,7 @@ def count_transactions_between():
             view.print_error_message("Start date cannot be empty. Please enter a valid date.")
         else:
             try:
-                end_date_str = util.parse_date(end_date_str)
+                end_date_str = util.parse_date_to_iso_format(end_date_str)
                 is_valid_end_date = True
             except ValueError:
                 view.print_error_message("Invalid date. Please enter date in YYYY-MM-DD format.")
@@ -334,7 +334,7 @@ def sum_transactions_between():
             view.print_error_message("Start date cannot be empty. Please enter a valid date.")
         else:
             try:
-                start_date_str = util.parse_date(start_date_str)
+                start_date_str = util.parse_date_to_iso_format(start_date_str)
                 is_valid_start_date = True
             except ValueError:
                 view.print_error_message("Invalid date. Please enter date in YYYY-MM-DD format.")
@@ -350,7 +350,7 @@ def sum_transactions_between():
             view.print_error_message("Start date cannot be empty. Please enter a valid date.")
         else:
             try:
-                end_date_str = util.parse_date(end_date_str)
+                end_date_str = util.parse_date_to_iso_format(end_date_str)
                 is_valid_end_date = True
             except ValueError:
                 view.print_error_message("Invalid date. Please enter date in YYYY-MM-DD format.")

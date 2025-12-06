@@ -56,7 +56,7 @@ def add_employee():
             view.print_error_message("Date of birth cannot be empty. Please enter a valid date.")
         else:
             try:
-                parsed_date = util.parse_date(date_str)
+                parsed_date = util.parse_date_to_iso_format(date_str)
                 is_valid_date = True
                 employee["Date of birth"] = parsed_date
             except ValueError:
@@ -150,7 +150,7 @@ def update_employee():
             is_valid_date = True
         else:
             try:
-                parsed_date = util.parse_date(date_str)
+                parsed_date = util.parse_date_to_iso_format(date_str)
                 is_valid_date = True
                 employee["Date of birth"] = parsed_date
             except ValueError:
@@ -232,7 +232,7 @@ def get_oldest_and_youngest():
     youngest_birthdate = None
 
     for employee in employees:
-        birthdate = util.parse_date(employee['Date of birth'])
+        birthdate = util.parse_date_to_iso_format(employee['Date of birth'])
         if oldest_birthdate is None or birthdate < oldest_birthdate:
             oldest_birthdate = birthdate
             oldest_employee = employee['Name']
