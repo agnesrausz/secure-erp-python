@@ -36,7 +36,7 @@ def add_employee():
     while not is_valid_name:
         view.clear()
         view.print_message("Adding a new employee")
-        name = view.get_input("Name").capitalize()
+        name = view.get_input("Name")
         if not name:
             view.print_error_message("Name cannot be empty. Please enter a valid name.")
         elif any((not char.isalnum() and char not in [" ", "-", "."]) for char in name):
@@ -129,7 +129,7 @@ def update_employee():
     while not is_valid_name:
         view.clear()
         view.print_message("Updating an employee")
-        name = view.get_input("Name").capitalize()
+        name = view.get_input("Name")
         if not name:
             # Keep existing name if input is empty
             is_valid_name = True
@@ -187,6 +187,7 @@ def update_employee():
 
 def delete_employee():
     """Delete an employee from the HR system."""
+    employee_id = ""
     is_valid_id = False
     while not is_valid_id:
         view.clear()

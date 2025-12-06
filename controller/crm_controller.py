@@ -97,7 +97,7 @@ def update_customer():
     while not is_valid_name:
         view.clear()
         view.print_message("Updating a customer")
-        name = view.get_input("Name").capitalize()
+        name = view.get_input("Name")
         if not name:
             # Keep existing name if input is empty
             is_valid_name = True
