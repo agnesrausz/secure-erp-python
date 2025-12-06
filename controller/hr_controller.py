@@ -306,7 +306,35 @@ def next_birthdays():
 
 
 def count_employees_with_clearance():
-    view.print_error_message("Not implemented yet.")
+    """Display the number of employees with at least the given clearance level."""
+    employees = hr.get_employees()
+
+    is_valid_clearance = False
+    min_clearance = 0
+
+    while not is_valid_clearance:
+        view.clear()
+        view.print_message("Count employees with clearance level")
+        clearance = view.get_input("Minimum clearance level")
+
+        if not clearance:
+            view.print_error_message("Clearance cannot be empty. Please enter a valid number.")
+        elif not clearance.isdigit():
+            view.print_error_message("Clearance must be a number. Please enter a valid value.")
+        else:
+            is_valid_clearance = True
+            min_clearance = int(clearance)
+
+    count = 0
+    for employee in employees:
+        if int(employee["Clearance"]) >= min_clearance:
+            count += 1
+
+    view.clear()
+    view.print_message("Count employees with clearance level")
+    view.print_message(f"Employees with clearance level {min_clearance}: {count}")
+    view.wait_for_enter()
+    return count
 
 
 def count_employees_per_department():
