@@ -8,7 +8,15 @@ def generate_id(number_of_small_letters=4,
                 number_of_digits=2,
                 number_of_special_chars=2,
                 allowed_special_chars=r"_+-!"):
-    return 'T!uq6-b4Yq'
+    characters = []
+    characters.extend(random.choices(string.ascii_lowercase, k=number_of_small_letters))
+    characters.extend(random.choices(string.ascii_uppercase, k=number_of_capital_letters))
+    characters.extend(random.choices(string.digits, k=number_of_digits))
+    characters.extend(random.choices(allowed_special_chars, k=number_of_special_chars))
+
+    random.shuffle(characters)
+
+    return ''.join(characters)
 
 
 def get_current_date():
