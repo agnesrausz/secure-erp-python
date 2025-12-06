@@ -249,7 +249,34 @@ def get_oldest_and_youngest():
 
 
 def get_average_age():
-    view.print_error_message("Not implemented yet.")
+    """Display the average age of employees."""
+    employees = hr.get_employees()
+    total_age = 0
+    current_date = util.get_current_date_iso_format()
+    current_year, current_month, current_day = current_date.split("-")
+    current_year = int(current_year)
+    current_month = int(current_month)
+    current_day = int(current_day)
+
+    for employee in employees:
+        birth_year, birth_month, birth_day = employee["Date of birth"].split("-")
+        birth_year = int(birth_year)
+        birth_month = int(birth_month)
+        birth_day = int(birth_day)
+
+        age = current_year - birth_year
+        if (current_month, current_day) < (birth_month, birth_day):
+            age -= 1
+
+        total_age += age
+
+    average_age = total_age // len(employees) if employees else 0
+
+    view.clear()
+    view.print_message("Employees average age")
+    view.print_message(f"Average age: {average_age} years")
+    view.wait_for_enter()
+    return average_age
 
 
 def next_birthdays():
